@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Duke Blue Pay</title>
+  <style>
+    #Submit-button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+  </style>
+
+
+</head>
+<body>
+  <h1 style="color:rgba(2, 27, 254, 0.744);">Duke Blue Pay</h1>
+  <br>
+  <font size="5"; color="#DB70DB">  
+    Name:Ruijie Zhao
+    <br>
+    NetID:RZ135
+    <br>
+
+  </font>
+  <font size="5"; color="#F70707">  
+
+  Dear viewer, if you can not view the chart successfully, please use venv(py -m http.server) and direct to http://localhost:8000/  
+  <br>
+  I also put the screen shots for my webpage in case you can not open the webpage
+  <br>
+  </font>
+
+  <font size="7">  
+    <p><center>Stock Chart</center></p>
+  </font>
+
+  <label for="stock-select">Choose a stock:</label>
+  <select name="stock" id="stock-select">
+      <option value="">--Please choose an option--</option>
+      <option value="AAPL">Apple</option>
+      <option value="GME">GameStop</option>
+      <option value="TSLA">Tesla</option>
+      <option value="SPY">S & P 500</option>
+  </select>
+</div>
+
+
+
+<div class="col-12 text-center">
+  <button id="Submit-button" class="btn btn-primary">Submit</button>
+</div>
+
+
+<div style="text-align:center;" id="myDiv" style="width: 600px; height: 400px;">  
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<script src="https://cdn.plot.ly/plotly-2.15.0.min.js"></script>
+<script src="https://cdn.rawgit.com/Keyang/node-csvtojson/d41f44aa/browser/csvtojson.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.min.js" integrity="sha512-oVbWSv2O4y1UzvExJMHaHcaib4wsBMS5tEP3/YkMP6GmkwRJAa79Jwsv+Y/w7w2Vb/98/Xhvck10LyJweB8Jsw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+<script src="{{ url_for('static', filename='chart2.js') }}"></script>
+<a href="{{ url_for('blog.index') }}">Home Page</a></p>
+</body>
+</html>

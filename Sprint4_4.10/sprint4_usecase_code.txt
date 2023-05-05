@@ -1,0 +1,77 @@
+@startuml
+skinparam actorStyle awesome
+left to right direction
+
+
+package People{
+  actor visitor as g
+  actor user as u
+  actor admin as A
+}
+package Administrator_Account {
+  usecase "list all summary of orders"
+  usecase "list all stocks"
+  usecase "analyze overall risk-return"
+(Create Account and Manage Account) 
+(add and remove users) 
+(manage the application' s lnusers and their portfolios)
+(View Performance)
+A<-Administrator_Account
+}
+package User_Account {
+  usecase "list owned stocks"
+  usecase "buy shares" as buy
+  usecase "sell shares" as sell
+  usecase "view history" as history
+  usecase "analyze risk-return" as analyze
+  usecase "report holdings" as report
+(View Portfolio)
+(Research Securities)
+u<-User_Account
+(Buy/Sell Securities)
+(View Performance)
+(Withdraw Funds)
+usecase "Place order" 
+  usecase "Buy order" 
+  usecase "Sell order"
+  usecase "Short"
+  usecase "portfolio risk and return profile"
+}
+package database{
+(Store Historical Data)
+}
+BigBucks<-- :database: :return data
+package data_charts{
+  usecase "price plot" as chart1
+  usecase "return plots" as chart2
+  usecase "stock price vs index price chart" as chart3
+  usecase "stock return vs index return  time series chart" as chart4
+  usecase "stock return vs index return scatterplot" as chart5
+  usecase "efficient frontier" as data1
+  usecase "sharpe ratio" as data2
+data_charts<-database
+}
+
+(People)<-- :BigBucks: :send alerts for price changes or other events related to the securities lnusers are interested in
+
+ package BigBucks {
+  usecase "Create account" as UC1
+  usecase "Login" as UC2
+  usecase "Sign out" as UC3
+  usecase "Notifications" as UC10
+  usecase "authentication" as UC11
+(UI/Ux Design)
+}
+(Buy order) ..> (Place order):extends
+(Sell order) ..> (Place order):extends
+(Short) ..> (Place order):extends
+UC11 ..> UC2:requires
+UC2 ..> UC1:requires
+UC3 ..> UC11:requires
+g --> UC1
+g --> UC2
+u-->UC11
+UC1 -->User_Account
+UC1 -->Administrator_Account
+BigBucks<-data_charts
+@enduml

@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BigBucks Account</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+</head>
+
+</html>
+<!-- <title>{% block title %}{% endblock %} - Team N</title> -->
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<!-- <div class="main-bg"> -->
+<header class="grid inset-x-0 top-0 z-50">
+  <nav>
+    <h1>BigBucks</h1>
+    <ul>
+      {% if g.user %}
+      <li><span class="white-text">{{ g.user['username'] }}</span>
+      <li><a id="aHover" href="{{ url_for('stock.index') }}"
+          class="white-text text-sm font-semibold leading-6 text-gray-900">Accounts</a>
+      <li><a id="aHover" href="{{ url_for('transactions.main') }}"
+          class="white-text text-sm font-semibold leading-6 text-gray-900">Transactions</a>
+      <li><a id="aHover" href="{{ url_for('transactions.view_portfolio') }}"
+          class="white-text text-sm font-semibold leading-6 text-gray-900">Portfolio</a>
+      <li><a id="aHover" href="{{ url_for('auth.users') }}"
+          class="white-text text-sm font-semibold leading-6 text-gray-900">Administrator Report</a>
+      <li><a id="aHover" href="{{ url_for('auth.logout') }}"
+          class="white-text text-sm font-semibold leading-6 text-gray-900">Log Out</a>
+        {% else %}
+      <li><a href="{{ url_for('auth.register') }}">Register</a>
+      <li><a href="{{ url_for('auth.login') }}">Log In</a>
+        {% endif %}
+    </ul>
+  </nav>
+</header>
+
+<!-- </div> -->
+
+
+<section class="content">
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  {% for message in get_flashed_messages() %}
+  <div class="flash">{{ message }}</div>
+  {% endfor %}
+  {% block content %}{% endblock %}
+</section>

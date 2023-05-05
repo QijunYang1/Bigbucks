@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+
+{% block header %}
+<!-- Bootstrap and DataTables stylesheets -->
+<link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/dataTables.bootstrap5.min.css">
+<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" language="javascript"
+    src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript"
+    src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap5.min.js"></script>
+
+<!-- Bootbox -->
+<!-- must be in this order! -->
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<link data-require="bootstrap@5.2.3" data-semver="5.2.3" rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.js"
+    integrity="sha512-kwtW9vT4XIHyDa+WPb1m64Gpe1jCeLQLorYW1tzT5OL2l/5Q7N0hBib/UNH+HFVjWgGzEIfLJt0d8sZTNZYY6Q=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
+<!--end of Bootbox files -->
+
+<h1>{% block title %}Portfolio Page{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+<body>
+    <div id="star-field">
+        <div class="account-balance">
+            <div class="sc-dvUynV jgsMkO">
+                <div class="sc-irKDMX cwoGFd">
+                    <span class="sc-eXuyPJ PkTTKRj"><strong>Portfolio Balance</strong></span>
+                    <span>${{ PortfolioBalance }}</span>
+                </div>
+            </div>
+            <!-- <h3>Portfolio Balance</h3>
+    <p><strong>{{ PortfolioBalance }}</strong></p> -->
+        </div>
+        <h3>A Look at {{ g.user['username'] }}'s Portfolio</h3>
+        <table id="stocks-owned" class="table table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th style="color: #ededee;">Stock</th>
+                    <th style="color: #ededee;">Stock Symbol</th>
+                    <th style="color: #ededee;">Number of Shares Owned</th>
+                    <th style="color: #ededee;">Weights</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stock in stocks %}
+                <tr>
+                    <td style="color: #e5e5f3;">{{ stock['name'] }}</td>
+                    <td style="color: #e5e5f3;">{{ stock['symbol'] }}</td>
+                    <td style="color: #e5e5f3;">{{ stock['shares_owned'] }}</td>
+                    <td style="color: #e5e5f3;">{{ data.current_portfolio[1][-1][stock['symbol']]}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <!-- JavaScript functions -->
+        <script src="/static/transactions.js"></script>
+
+        {% if data %}
+            {{ data.pie_fig['currentFig']|safe }}
+        {% endif %}
+
+        <h2>Efficient Frontier</h2>
+        {% if data %}
+            {{ data.plot_div|safe }}
+        {% endif %}
+
+        <h2>Portfolio Performance</h2>
+        <table id="stocks-owned" class="table table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th style="color: #ededee;">Type</th>
+                    <th style="color: #ededee;">Sharpe Ratio</th>
+                    <th style="color: #ededee;">Return</th>
+                    <th style="color: #ededee;">Volatility</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if data %}
+                <tr>
+                    <td style="color: #ededee;">Super Efficient Portfolio</td>
+                    <td style="color: #e5e5f3;">{{ data.optimal_portfolio[2] }}</td>
+                    <td style="color: #e5e5f3;">{{ data.optimal_portfolio[0] }}</td>
+                    <td style="color: #e5e5f3;">{{ data.optimal_portfolio[1] }}</td>
+                </tr>
+                <tr>
+                    <td style="color: #ededee;">Current Portfolio</td>
+                    <td style="color: #e5e5f3;">{{ data.current_portfolio[0][2] }}</td>
+                    <td style="color: #e5e5f3;">{{ data.current_portfolio[1][0] }}</td>
+                    <td style="color: #e5e5f3;">{{ data.current_portfolio[1][1] }}</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+
+
+        <h2>Portfolio Weights</h2>
+        <h3>Super Efficient Portfolio Weights</h3>
+        <table id="stocks-owned" class="table table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th style="color: #ededee;">Stock</th>
+                    <th style="color: #ededee;">Stock Symbol</th>
+                    <th style="color: #ededee;">Weights</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stock in stocks %}
+                <tr>
+                    <td style="color: #e5e5f3;">{{ stock['name'] }}</td>
+                    <td style="color: #e5e5f3;">{{ stock['symbol'] }}</td>
+                    <td style="color: #e5e5f3;">{{ data.optimal_portfolio[-1][stock['symbol']]}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% if data %}
+            {{ data.pie_fig['optimalFig']|safe }}
+        {% endif %}
+
+        <h2>Portfolio Growth</h2>
+        {% if data %}
+            {{ data.portfolio_growth_fig|safe }}
+        {% endif %}
+        <h2>Annual Returns</h2>
+        {% if data %}
+            {{ data.portfolio_annual_return_fig|safe }}
+        {% endif %}
+
+
+{% endblock %}

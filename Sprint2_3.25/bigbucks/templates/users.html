@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Users and Transactions</h1>
+  
+  <h2>Transaction Report</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Stock Symbol</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Transaction Datetime</th>
+        <th>Transaction Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in users %}
+        <tr>
+          <td>{{ row['username'] }}</td>
+          <td>{{ row['symbol'] }}</td>
+          <td>{{ row['price'] }}</td>
+          <td>{{ row['quantity'] }}</td>
+          <td>{{ row['transaction_datetime'] }}</td>
+          <td {% if row['transaction_type'] == 'buy' %}style="color:red;"{% elif row['transaction_type'] == 'sell' %}style="color:green;"{% endif %}>
+            {{ row['transaction_type'] }}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h2>Portfolio Report</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>User ID</th>
+        <th>Stock Symbol</th>
+        <th>Shares Owned</th>
+        <th>Price</th>
+        <th>User Balance</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in portfolio_report %}
+        <tr>
+          <td>{{ row['username'] }}</td>
+          <td>{{ row['id'] }}</td>
+          <td>{{ row['symbol'] }}</td>
+          <td>{{ row['shares_owned'] }}</td>
+          <td>{{ row['price'] }}</td>
+          <td>{{ row['user_balance'] }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+<h2>Market Report</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Stock Symbol</th>
+      <th>Total Shares Owned</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in market_report %}
+    <tr>
+      <td>{{ row['symbol'] }}</td>
+      <td>{{ row['total_shares_owned'] }}</td>
+      <td>{{ row['price'] }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+  <a href="{{ url_for('stock.index') }}" style="font-size: larger; color: red;">Home Page</a>
+{% endblock %}

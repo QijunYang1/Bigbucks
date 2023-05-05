@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class = "container">
+<head>
+	<link rel="stylesheet" type="text/css" href="/media/css/site-examples.css?_=0771ef576c9d13b959c1b9f1347f44991">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/dataTables.bootstrap5.min.css">
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap5.min.js"></script>
+</head>
+
+<body>
+<script>
+        $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
+
+<div class="account">
+    <p>&nbsp</p>
+    <h2>Account Information</h2>
+    <div class="account-balance">
+      <h3>Account Balance</h3>
+      <p><strong>{{ user['balance']}}</strong></p>
+    </div>
+</div>
+
+{% if user_balance %}
+    <p>Your current balance: {{ user_balance }}</p>
+    <form action="{{ url_for('add_cash') }}" method="post">
+        <input type="number" name="amount" step="0.01" placeholder="Enter amount">
+        <button type="submit">Add Cash</button>
+        <button type="button" class="btn btn-primary">Add Cash</button>
+    </form>
+    <form action="{{ url_for('cash_out') }}" method="post">
+        <input type="number" name="amount" step="0.01" placeholder="Enter amount">
+        <button type="submit">Cash Out</button>
+    </form>
+{% endif %}
+
+<form method="POST">
+    <input type="text" name="amount" placeholder="Amount">
+    <button type="submit" name="action" value="add_cash">Add cash</button>
+    <button type="submit" name="action" value="cash_out">Cash out</button>
+</form>
+<p>&nbsp</p>
+<p>&nbsp</p>
+<h2>Watchlist</h2>
+    <form method="POST">
+        <label for="symbol">Stock Symbol:</label>
+        <input type="text" id="symbol" name="symbol"><br>
+        <label for="tracking_price">Tracking Price:</label>
+        <input type="number" id="tracking_price" name="tracking_price"><br>
+        <label for="num_shares">Number of Shares:</label>
+        <input type="number" id="num_shares" name="num_shares"><br>
+        <input type="submit" value="Add Stock">
+    </form>
+
+
+<div>
+    <table id="example" class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Stock</th>
+                <th>Tracking Price</th>
+                <th>Current Price</th>
+                <th>Pct Change</th>
+                <th>Number of Shares</th>
+                <th>Datetime Added</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+            <tr>
+                <td>{{ stock['symbol'] }}</td>
+                <td>{{ stock['tracking_price'] }}</td>
+                <td>{{ stock['current_price'] }}</td>
+                <td>{{ stock['percent_change'] }}</td>
+                <td>{{ stock['shares'] }}</td>
+                <td>{{ stock['datetime_added'] }}</td>
+                <td>
+                    <form method="POST" action="{{ url_for('stock.delete', id=stock.id) }}">
+                        <input type="submit" value="Delete">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</div>
+{% endblock %}

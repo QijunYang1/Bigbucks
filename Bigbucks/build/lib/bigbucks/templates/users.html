@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Users and Transactions</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+      body {
+        background-color: black;
+        color: white;
+      }
+      th {
+        background-color: #343a40;
+        color: white;
+      }
+      .table-bordered td,
+      .table-bordered th {
+        border: 1px solid white;
+      }
+      .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+      }
+      .btn-primary:hover {
+        background-color: #0069d9;
+        border-color: #0062cc;
+      }
+      .text-danger {
+        color: #dc3545;
+      }
+      .text-info {
+        color: #17a2b8;
+      }
+      .table-bordered {
+        border-color: white;
+      }
+      .table-bordered thead td,
+      .table-bordered thead th {
+        border-bottom-width: 2px;
+      }
+      .table-bordered td,
+      .table-bordered th {
+        border: 1px solid white;
+      }
+      .table-bordered th {
+        background-color: #343a40;
+        color: white;
+      }
+      .table-bordered td {
+        background-color: #343a40;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center text-danger my-5">Administrator Report (Admin Only!)</h1>
+      <form method="post" action="{{ url_for('auth.users') }}" class="text-center">
+
+        <div class="form-group">
+          <label for="start_date">Filter Transaction Report by Start Date:</label>
+          <input type="date" id="start_date" name="start_date" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="end_date">Filter Transaction Report by End Date:</label>
+          <input type="date" id="end_date" name="end_date" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Filter</button>
+      </form>
+      <h2 class="text-center text-info my-5">Transaction Report</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Stock Symbol</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Transaction Datetime</th>
+            <th>Transaction Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in users %}
+            <tr>
+              <td>{{ row['username'] }}</td>
+              <td>{{ row['symbol'] }}</td>
+              <td>{{ '{:,.2f}'.format(row['price']) }}</td>
+              <td>{{ row['quantity'] }}</td>
+              <td>{{ row['closing_date'] }}</td>
+              <td style="{% if row['transaction_type'] == 'buy' %}color:red;{% elif row['transaction_type'] == 'sell' %}color:green;{% endif %}">
+                {{ row['transaction_type'] }}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <h2 class="text-center text-info my-5">Portfolio Report</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>User ID</th>
+            <th>Stock Symbol</th>
+            <th>Shares Owned</th>
+            <th>Price</th>
+            <th>User Balance</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in portfolio_report %}
+            <tr>
+              <td>{{ row['username'] }}</td>
+              <td>{{ row['id'] }}</td>
+              <td>{{ row['symbol'] }}</td>
+              <td>{{ row['shares_owned'] }}</td>
+              <td>{{ '{:,.2f}'.format(row['price']) }}</td>
+              <td>{{ '{:,.2f}'.format(row['user_balance']) }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <h2 class="text-center text-info my-5">Market Report</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Stock Symbol</th>
+            <th>Total Shares Owned</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in market_report %}
+            <tr>
+              <td>{{ row['symbol'] }}</td>
+              <td>{{ row['total_shares_owned'] }}</td>
+              <td>{{ '{:,.2f}'.format(row['price']) }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+
+        {% endblock %}

@@ -1,0 +1,269 @@
+/* Set the font and background for the HTML element */
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f5f5;
+  }
+  
+  /* Set the max width and center the body element */
+  body {
+    max-width: 960px;
+    margin: 0 auto;
+    background: #fff;
+    color: #333;
+    line-height: 1.5;
+    padding: 1rem;
+  }
+  
+  /* Style the main heading */
+  h1 {
+    font-family: Georgia, Times, serif;
+    font-size: 2.5rem;
+    color: #377ba8;
+    margin: 1rem 0;
+    text-align: center;
+  }
+  
+  /* Style links */
+  a {
+    color: #377ba8;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  a:hover {
+    color: #6eb8de;
+  }
+  
+  /* Style the horizontal rule */
+  hr {
+    border: none;
+    border-top: 1px solid #dcdcdc;
+    margin: 2rem 0;
+  }
+  
+  /* Style the navigation bar */
+  nav {
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Style the navigation bar heading */
+  nav h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    flex-basis: 50%;
+    text-align: left;
+  }
+  
+  /* Style the navigation bar unordered list */
+  nav ul  {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-basis: 50%;
+    justify-content: flex-end;
+  }
+  
+  /* Style the navigation bar unordered list item */
+  nav ul li a,
+  nav ul li span,
+  header .action {
+    display: block;
+    padding: 0.5rem;
+  }
+  
+  /* Style the content section */
+  .content {
+    padding: 0 1rem 1rem;
+  }
+  
+  /* Style the content header */
+  .content > header {
+    border-bottom: 1px solid #dcdcdc;
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+  }
+  
+  /* Style the content header heading */
+  .content > header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    text-align: left;
+  }
+  
+  /* Style the flash messages */
+  .flash {
+    margin: 1em 0;
+    padding: 1em;
+    background: #e9f5f9;
+    border: 1px solid #a3ccdb;
+    border-radius: 5px;
+  }
+  
+  /* Style the post */
+  .post > header {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Style the post header */
+  .post > header > div:first-of-type {
+    flex: auto;
+  }
+  
+  /* Style the post header heading */
+  .post > header h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+    font-weight: bold;
+  }
+  
+    /* Style the post body */
+    .post .body {
+        margin: 1rem 0;
+        font-size: 1rem;
+        color: #333;
+        line-height: 1.5;
+        }
+    /* Style the content form */
+.content form {
+    margin: 1em 0;
+    display: flex;
+    flex-direction: column;
+    }
+    
+    /* Style the content label */
+    .content label {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    font-size: 1rem;
+    color: #333;
+    }
+    
+    /* Style the content input and textarea */
+    .content input,
+    .content textarea {
+    margin-bottom: 1em;
+    padding: 0.5em;
+    border: none;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    }
+    
+    /* Style the content textarea */
+    .content textarea {
+    min-height: 12em;
+    resize: vertical;
+    }
+    
+    /* Style the danger input */
+    input.danger {
+    color: #cc2f2e;
+    }
+    
+    /* Style the submit input */
+    input[type=submit] {
+    align-self: start;
+    min-width: 10em;
+    background-color: #377ba8;
+    color: #fff;
+    border-radius: 5px;
+    padding: 0.5em;
+    border: none;
+    transition: all 0.3s ease;
+    }
+    
+    input[type=submit]:hover {
+    background-color: #6eb8de;
+    }
+    
+    /* Style the logout button */
+    .logout-btn {
+    background-color: #cc2f2e;
+    color: #fff;
+    border-radius: 5px;
+    padding: 0.5em;
+    border: none;
+    transition: all 0.3s ease;
+    }
+    
+    .logout-btn:hover {
+    background-color: #e57373;
+    cursor: pointer;
+    }
+    
+    /* Style the pagination links */
+    .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    }
+    
+    .pagination li {
+    margin: 0 0.5rem;
+    list-style: none;
+    }
+    
+    .pagination a {
+    display: block;
+    padding: 0.5em;
+    color: #377ba8;
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    }
+    
+    .pagination a:hover {
+    background-color: #6eb8de;
+    color: #fff;
+    border: 1px solid #6eb8de;
+    }
+    
+    /* Style the search form */
+    .search-form {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    }
+    
+    .search-form input[type="text"] {
+    padding: 0.5em;
+    border: none;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin-right: 1rem;
+    flex: 1;
+    }
+    
+    .search-form input[type="submit"] {
+    padding: 0.5em;
+    border: none;
+    background-color: #377ba8;
+    color: #fff;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    }
+    
+    .search-form input[type="submit"]:hover {
+    background-color: #6eb8de;
+    cursor: pointer;
+    }
+    
+    /* Style the footer */
+    footer {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    color: #666;
+    }

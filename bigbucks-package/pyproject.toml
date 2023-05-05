@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "bigbucks"
+version = "0.0.1"
+authors = [
+  { name="Amy Chang", email="amy.chang@duke.edu" },
+  { name="Qijun Yang", email="qijun.yang@duke.edu"},
+  { name= "Ruijie Zhao", email="ruijie.zhao@duke.edu"},
+  { name="Stella Yu", email="siqi.yu@duke.edu" }
+]
+description = "Bigbucks project package"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://gitlab.oit.duke.edu/alc150/fintech512-bigbucks/-/tree/main"
+"Bug Tracker" = "https://gitlab.oit.duke.edu/alc150/fintech512-bigbucks/-/issues"

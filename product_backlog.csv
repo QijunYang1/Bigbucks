@@ -1,0 +1,20 @@
+ID,As a ...,I want to be able to ... ,So that,PRIORITY,Sprint,STATUS
+1,User / Visitor,View the latest and most important information,I could decide whether I should use this application.,Must,1,To be Started
+2,User / Admin,Trade my investments,"I could buy, sell and even short the financial instruments",Must,1,To be Started
+3,User,"Register, sign in, and sign out my account.",I could use my account,Must,1,To be Started
+4,Admin,Send emails to my users,help them find or reset their passwords,Must,1,To be Started
+5,User,Analyze the market and stock performance,it could help me make decision,Must,1,To be Started
+6,Admin,"Finish my application build before Apr 19, 2023",it could be published on time,Must,1,To be Started
+7,User/Vistor,have the web to own beautiful and clear visuals and be easy to interact with,I can have a relaxed and happy experience while using the product.,Must,2,To be Started
+8,User/Admin,"want the product to ensure that there is no privacy leak and maintain strong security measures,",my personal information and portfolio can remain safe and protected from any unauthorized access or breach.,Must,2,To be Started
+9,User,"want the product to store at least 5 years of daily historical data and important index daily data, like SPY and Nasdaq",I can track and analyze data trends over time to make informed decisions and plan for the future,Must,2,To be Started
+10,User, I want the product to use efficient frontier volatility to calculate volatility for a range of return targets and determine where the current portfolio weight is located on a risk and return graph,users can accurately assess the risks and returns associated with their portfolio and make informed decisions about their investments,Must,2,To be Started
+11,User,want the product to calculate the Sharpe ratio for my account using the US Treasury 10-year bond yield as the risk-free rate,I can accurately assess the potential performance of my investments and make informed decisions about my portfolio,Must,2,To be Started
+12,User, want the product to provide the ability to analyze the overall risk-return profile of all stocks held by account holders,I can make informed decisions about my investment choices and choose the best stocks for my portfolio based on my risk tolerance and investment goals,Must,3,To be Started
+13,User /  Visitor,"List stocks by ticker symbol, name, shares held, and price per share",track orders easily and informatively,Must,3,To be Started
+14,Admin,"see a list of stocks across all users by ticker symbol, name, shares held, and price per share,",analyze other users behaviors,Must,3,To be Started
+15,User,"see a summary of current day's market orders across all users by ticker symbol, name, shares bought, and shares sold",I can get the big view to the market,Must,3,To be Started
+16,User / Visitor,view the historical performance,make informed decisions about my investment,Must,3,To be Started
+17,User / Visitor,want to be able to view news articles related to a specific stock,stay informed about the latest developments for a specific stock.,,4,To be Started
+18,User,create a watchlist of stocks,keep track of stocks that I am interested,Must,4,To be Started
+19,Admin,debug,the app canrun successfully,Must,4,To be Started

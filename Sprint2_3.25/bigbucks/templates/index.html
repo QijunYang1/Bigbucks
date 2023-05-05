@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Trade Page</title>
+  <!-- Font Import -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap and DataTables stylesheets -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/dataTables.bootstrap5.min.css">
+
+  <!-- Custom styles -->
+  <link rel="stylesheet" type="text/css" href="/media/css/site-examples.css?_=0771ef576c9d13b959c1b9f1347f44991">
+  
+  <!-- Custom CSS -->
+  <style>
+    /* Body */
+    body {
+      background-color: #f2f2f2;
+    }
+    
+    /* Link color */
+    a {
+      color: #0000ff; /* change link color */
+      text-decoration: none;
+    }
+    
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Table */
+    table {
+      border-collapse: collapse;
+      border: 2px solid #cccccc; /* change border color */
+      width: 100%; /* change width */
+      margin: 0px auto; /* change margin */
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center; /* change text align */
+      border-bottom: 2px solid #cccccc; /* change border color */
+    }
+
+    th {
+      background-color: #dddddd; /* change header color */
+      color: #000000; /* change header text color */
+    }
+
+    tr:hover {
+      background-color: #f5f5f5; /* change row hover color */
+    }
+
+    /* Form */
+    form {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px; /* change margin */
+      font-size: 18px; /* change font size */
+      color: #000000; /* change font color */
+    }
+
+    input[type="text"], input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin: 10px;
+      box-sizing: border-box;
+      font-size: 16px;
+      resize: none;
+    }
+
+    input[type="submit"] {
+      background-color: #0000ff;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 10px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #3e8e41;
+    }
+
+    .error {
+      color: #ff0000;
+      margin-bottom: 10px;
+    }
+    .add-stock, .add-cash, .cash-out{
+      background-color: #0000ff; 
+      color: #fff; 
+      padding: 10px 20px; 
+      border: none; 
+      border-radius: 5px; 
+      cursor: pointer; 
+      font-size: 16px; 
+      margin: 10px;
+    }
+    .add-stock:hover, .add-cash:hover, .cash-out:hover{
+      background-color: #3e8e41;
+    }
+    .delete{
+      background-color: #0000ff; 
+      color: #fff; 
+      padding: 10px 20px; 
+      border: none; 
+      border-radius: 5px; 
+      cursor: pointer; 
+      font-size: 16px; 
+      margin: 10px;
+    }
+    .delete:hover{
+      background-color: #3e8e41;
+    }
+  </style>
+</head>
+
+<body>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class = "container">
+<head>
+	<link rel="stylesheet" type="text/css" href="/media/css/site-examples.css?_=0771ef576c9d13b959c1b9f1347f44991">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/dataTables.bootstrap5.min.css">
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap5.min.js"></script>
+</head>
+
+<body>
+<script>
+        $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
+
+<div class="account">
+    <p>&nbsp</p>
+    <h2>Account Information</h2>
+    <div class="account-balance">
+      <h3>Account Balance</h3>
+      <p><strong>{{ user['balance']}}</strong></p>
+    </div>
+</div>
+
+{% if user_balance %}
+    <p>Your current balance: {{ user_balance }}</p>
+    <form action="{{ url_for('add_cash') }}" method="post">
+        <input type="number" name="amount" step="0.01" placeholder="Enter amount">
+        <button type="submit" class="add-cash">Add Cash</button>
+        <button type="button" class="btn btn-primary add-cash">Add Cash</button>
+    </form>
+    <form action="{{ url_for('cash_out') }}" method="post">
+        <input type="number" name="amount" step="0.01" placeholder="Enter amount">
+        <button type="submit" class="cash-out">Cash Out</button>
+    </form>
+{% endif %}
+
+<form method="POST">
+    <input type="text" name="amount" placeholder="Amount" style="background-color: #f2f2f2;">
+    <button type="submit" name="action" value="add_cash" class="add-cash">Add cash</button>
+    <button type="submit" name="action" value="cash_out" class="cash-out">Cash out</button>
+</form>
+
+
+<p>&nbsp</p>
+<p>&nbsp</p>
+
+
+<h2>Stock Info</h2>
+<form method="POST">
+    <label for="symbol">Stock Symbol:</label>
+    <input type="text" id="symbol" name="symbol" style="background-color: #f2f2f2;"><br>
+    <button type="submit" value="Add Stock" class="add-stock">Add Stock</button>
+</form>
+
+
+<div>
+    <table id="example" class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+				        <th>Name</th>
+                <th>Current Price</th>
+                <th>Daily High</th>
+                <th>Daily Low</th>
+                <th>Volume</th>
+                <th>Market Cap</th>
+                <th>Sector</th>
+                <th>Exchange</th>
+                <th>Currency</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+            <tr>
+                <td>{{ stock['symbol'] }}</td>
+				        <td>{{ stock['displayName']+' ('+stock['shortName']+")" }}</td>
+                <td>{{ stock['current_price'] }}</td>
+                <td>{{ stock['dayHigh'] }}</td>
+                <td>{{ stock['dayLow'] }}</td>
+                <td>{{ stock['Volume'] + "M"}}</td>
+                <td>{{ stock['marketCap'] + "B"}}</td>
+                <td>{{ stock['sector'] }}</td>
+                <td>{{ stock['exchange'] }}</td>
+                <td>{{ stock['currency'] }}</td>
+                <td>
+                    <form method="POST" action="{{ url_for('stock.delete', id=stock.id) }}">
+                        <input type="submit" value="Delete" class="delete">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</div>
+{% endblock %}
+</body>
+
+</html>
