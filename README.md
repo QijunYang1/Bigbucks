@@ -28,3 +28,7 @@ This project was developed as part of the curriculum for "Fintech 512: Software 
 - **Prototyping and Design**: Implementation of UI/UX design principles with paper prototypes and Balsamiq wireframes.
 - **Updated Website User Controls**: Reflecting the design work in the final website.
 
+## Presentation
+- Slides: [Link](https://github.com/QijunYang1/Bigbucks/blob/main/512%20Presentation.pdf)
+- Videos: [Link](https://drive.google.com/drive/folders/1UYtY3gzQWPJ1mwO6iemC2kYkmrf3BXyx?usp=sharing)
+
