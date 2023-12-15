@@ -1,7 +1,8 @@
 # BigBucks: 'Robinhood for High Rollers'
 
 ## Description
-BigBucks is a web-based platform designed as a Robinhood competitor, tailored specifically for High Net Worth individuals. Unlike Robinhood, which targets beginning investors, BigBucks offers a sophisticated environment for seasoned investors to manage their portfolios.
+BigBucks is a web-based platform designed as a Robinhood competitor, tailored specifically for High Net Worth individuals. Unlike Robinhood, which targets beginning investors, BigBucks offers a sophisticated environment for seasoned investors to manage their portfolios. 
+This project was developed as part of the curriculum for "Fintech 512: Software Engineering for FinTech," where we focused on creating sophisticated financial technology solutions. BigBucks is a culmination of the skills and knowledge acquired in this course, showcasing our ability to design and implement a complex FinTech application.
 
 ## Features
 
